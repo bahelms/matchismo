@@ -43,7 +43,7 @@
     } else {
         [sender setBackgroundImage:[UIImage imageNamed:@"cardfront"]
                           forState:UIControlStateNormal];
-        [sender setTitle:@"A♣️" forState:UIControlStateNormal];
+        [sender setTitle:@"A️♣︎" forState:UIControlStateNormal];
     }
     self.flipCount++;
 }
