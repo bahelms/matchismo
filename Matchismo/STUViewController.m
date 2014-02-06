@@ -5,33 +5,27 @@
 //  Created by Barrett Helms on 2/3/14.
 //  Copyright (c) 2014 Stanford iTunes U. All rights reserved.
 //
-
 #import "STUViewController.h"
+#import "STUPlayingCardDeck.h"
 
 @interface STUViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
+@property (nonatomic) STUDeck *deck;
 @property (nonatomic) int flipCount;
 @end
 
 @implementation STUViewController
 
-- (void)viewDidLoad
+- (STUDeck *)deck
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if (!_deck) _deck = [[STUPlayingCardDeck alloc] init];
+    return _deck;
 }
 
 - (void)setFlipCount:(int)flipCount
 {
     _flipCount = flipCount;
     self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.flipCount];
-    NSLog(@"flipCount = %d", self.flipCount);
 }
 
 - (IBAction)touchCardButton:(UIButton *)sender
@@ -43,7 +37,7 @@
     } else {
         [sender setBackgroundImage:[UIImage imageNamed:@"cardfront"]
                           forState:UIControlStateNormal];
-        [sender setTitle:@"A️♣︎" forState:UIControlStateNormal];
+        [sender setTitle:@"A♣︎" forState:UIControlStateNormal];
     }
     self.flipCount++;
 }
