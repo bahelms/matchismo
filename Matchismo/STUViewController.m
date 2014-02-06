@@ -35,11 +35,12 @@
                           forState:UIControlStateNormal];
         [sender setTitle:@"" forState:UIControlStateNormal];
     } else {
+        [sender setTitle:[[self.deck drawRandomCard] contents] forState:UIControlStateNormal];
         [sender setBackgroundImage:[UIImage imageNamed:@"cardfront"]
                           forState:UIControlStateNormal];
-        [sender setTitle:@"A♣︎" forState:UIControlStateNormal];
     }
     self.flipCount++;
+    NSLog(@"Sender currentTitle length: %lu", (unsigned long)[sender.currentTitle length]);
 }
 
 @end
