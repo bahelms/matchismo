@@ -34,12 +34,16 @@
         [sender setBackgroundImage:[UIImage imageNamed:@"cardback"]
                           forState:UIControlStateNormal];
         [sender setTitle:@"" forState:UIControlStateNormal];
+        self.flipCount++;
     } else {
-        [sender setTitle:[[self.deck drawRandomCard] contents] forState:UIControlStateNormal];
-        [sender setBackgroundImage:[UIImage imageNamed:@"cardfront"]
-                          forState:UIControlStateNormal];
+        STUCard *card = [self.deck drawRandomCard];
+        if (card) {
+            [sender setTitle:card.contents forState:UIControlStateNormal];
+            [sender setBackgroundImage:[UIImage imageNamed:@"cardfront"]
+                              forState:UIControlStateNormal];
+            self.flipCount++;
+        }
     }
-    self.flipCount++;
     NSLog(@"Sender currentTitle length: %lu", (unsigned long)[sender.currentTitle length]);
 }
 
