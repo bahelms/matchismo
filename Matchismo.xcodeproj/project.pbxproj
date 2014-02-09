@@ -25,6 +25,7 @@
 		0BA0633F18A263B70075CFF6 /* STUPlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0633E18A263B70075CFF6 /* STUPlayingCard.m */; };
 		0BAF8CAF18A10B7C0031CA00 /* STUCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAF8CAE18A10B7C0031CA00 /* STUCard.m */; };
 		0BAF8CB418A10E0E0031CA00 /* STUDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAF8CB318A10E0E0031CA00 /* STUDeck.m */; };
+		0BC75DE718A67B3400E9A5C5 /* STUCardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC75DE618A67B3400E9A5C5 /* STUCardMatchingGame.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,8 @@
 		0BAF8CAE18A10B7C0031CA00 /* STUCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STUCard.m; path = Model/STUCard.m; sourceTree = "<group>"; };
 		0BAF8CB218A10E0E0031CA00 /* STUDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STUDeck.h; path = Model/STUDeck.h; sourceTree = "<group>"; };
 		0BAF8CB318A10E0E0031CA00 /* STUDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STUDeck.m; path = Model/STUDeck.m; sourceTree = "<group>"; };
+		0BC75DE518A67B3400E9A5C5 /* STUCardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STUCardMatchingGame.h; sourceTree = "<group>"; };
+		0BC75DE618A67B3400E9A5C5 /* STUCardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STUCardMatchingGame.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +171,8 @@
 		0BAF8CB118A10BA10031CA00 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0BC75DE518A67B3400E9A5C5 /* STUCardMatchingGame.h */,
+				0BC75DE618A67B3400E9A5C5 /* STUCardMatchingGame.m */,
 				0BA0633D18A263B70075CFF6 /* STUPlayingCard.h */,
 				0BA0633E18A263B70075CFF6 /* STUPlayingCard.m */,
 				0BAF8CAD18A10B7C0031CA00 /* STUCard.h */,
@@ -281,6 +286,7 @@
 				0B569CF7189FB91B00F22A8A /* main.m in Sources */,
 				0B8C528718A3ADB7000F42DF /* STUPlayingCardDeck.m in Sources */,
 				0BAF8CB418A10E0E0031CA00 /* STUDeck.m in Sources */,
+				0BC75DE718A67B3400E9A5C5 /* STUCardMatchingGame.m in Sources */,
 				0B569CFB189FB91B00F22A8A /* STUAppDelegate.m in Sources */,
 				0BA0633F18A263B70075CFF6 /* STUPlayingCard.m in Sources */,
 				0BAF8CAF18A10B7C0031CA00 /* STUCard.m in Sources */,
