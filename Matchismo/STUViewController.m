@@ -19,8 +19,7 @@
 
 - (STUCardMatchingGame *)game
 {
-    if (!_game) _game = [[STUCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                                             usingDeck:[self createDeck]];
+    if (!_game) _game = [self createGame];
     return _game;
 }
 
@@ -29,10 +28,22 @@
     return [[STUPlayingCardDeck alloc] init];
 }
 
+- (STUCardMatchingGame *)createGame
+{
+     return [[STUCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+                                                 usingDeck:[self createDeck]];
+}
+
 - (IBAction)touchCardButton:(UIButton *)sender
 {
     int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
     [self.game chooseCardAtIndex:chosenButtonIndex];
+    [self updateUI];
+}
+
+- (IBAction)dealAgainButton:(UIButton *)sender
+{
+    self.game = [self createGame];
     [self updateUI];
 }
 
