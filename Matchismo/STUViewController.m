@@ -46,12 +46,10 @@
 - (IBAction)touchCardButton:(UIButton *)sender
 {
     int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
-    STUCard *card = [self.game cardAtIndex:chosenButtonIndex];
     
     self.gameModeSegment.enabled = NO;
     [self.game chooseCardAtIndex:chosenButtonIndex];
-    
-    self.matchAlertLabel.text = card.isChosen ? card.contents : nil;
+    [self.matchHistory addObject:self.game.matchMessage ? self.game.matchMessage : @""];
     [self updateUI];
 }
 
@@ -64,26 +62,15 @@
 
 - (void)updateUI
 {
-    NSMutableArray *matches = [NSMutableArray array];
-    
     for (UIButton *cardButton in self.cardButtons) {
-        if (cardButton.enabled) {
-            int cardButtonIndex = [self.cardButtons indexOfObject:cardButton];
-            STUCard *card = [self.game cardAtIndex:cardButtonIndex];
-            [cardButton setTitle:[self titleForCard:card] forState:UIControlStateNormal];
-            [cardButton setBackgroundImage:[self backgroundImageForCard:card]
-                                  forState:UIControlStateNormal];
-            if (card.isMatched) {
-                [matches addObject:card.contents];
-            }
-            cardButton.enabled = !card.isMatched;
-        }
+        int cardButtonIndex = [self.cardButtons indexOfObject:cardButton];
+        STUCard *card = [self.game cardAtIndex:cardButtonIndex];
+        [cardButton setTitle:[self titleForCard:card] forState:UIControlStateNormal];
+        [cardButton setBackgroundImage:[self backgroundImageForCard:card]
+                              forState:UIControlStateNormal];
+        cardButton.enabled = !card.isMatched;
     }
-    if ([matches count] > 0) {
-        [self.matchHistory addObject:[NSString stringWithFormat:@"Matched %@ with %@",
-                                      [matches firstObject], [matches lastObject]]];
-        self.matchAlertLabel.text = [self.matchHistory lastObject];
-    }
+    self.matchAlertLabel.text = self.game.matchMessage;
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
 }
 

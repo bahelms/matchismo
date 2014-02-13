@@ -12,6 +12,7 @@
 @interface STUCardMatchingGame : NSObject
 
 @property (nonatomic, readonly) NSInteger score;
+@property (nonatomic, readonly) NSString *matchMessage;
 
 // Designated init
 - (instancetype)initWithCardCount:(NSUInteger)count
