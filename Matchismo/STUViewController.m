@@ -49,7 +49,9 @@
     
     self.gameModeSegment.enabled = NO;
     [self.game chooseCardAtIndex:chosenButtonIndex];
-    [self.matchHistory addObject:self.game.matchMessage ? self.game.matchMessage : @""];
+    
+    if (self.game.matchMessage)
+        [self.matchHistory addObject:self.game.matchMessage];
     [self updateUI];
 }
 
