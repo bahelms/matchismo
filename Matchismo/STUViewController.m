@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gameModeSegment;
 @property (weak, nonatomic) IBOutlet UILabel *matchAlertLabel;
 @property (nonatomic) STUCardMatchingGame *game;
+@property (nonatomic) NSMutableArray *matchHistory;
 @end
 
 @implementation STUViewController
@@ -23,6 +24,12 @@
 {
     if (!_game) _game = [self createGame];
     return _game;
+}
+
+- (NSMutableArray *)matchHistory
+{
+    if (!_matchHistory) _matchHistory = [NSMutableArray array];
+    return _matchHistory;
 }
 
 - (STUDeck *)createDeck
@@ -39,10 +46,12 @@
 - (IBAction)touchCardButton:(UIButton *)sender
 {
     int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
+    STUCard *card = [self.game cardAtIndex:chosenButtonIndex];
     
     self.gameModeSegment.enabled = NO;
     [self.game chooseCardAtIndex:chosenButtonIndex];
     
+    self.matchAlertLabel.text = card.isChosen ? card.contents : nil;
     [self updateUI];
 }
 
@@ -55,15 +64,27 @@
 
 - (void)updateUI
 {
+    NSMutableArray *matches = [NSMutableArray array];
+    
     for (UIButton *cardButton in self.cardButtons) {
-        int cardButtonIndex = [self.cardButtons indexOfObject:cardButton];
-        STUCard *card = [self.game cardAtIndex:cardButtonIndex];
-        [cardButton setTitle:[self titleForCard:card] forState:UIControlStateNormal];
-        [cardButton setBackgroundImage:[self backgroundImageForCard:card]
-                              forState:UIControlStateNormal];
-        cardButton.enabled = !card.isMatched;
-        self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
+        if (cardButton.enabled) {
+            int cardButtonIndex = [self.cardButtons indexOfObject:cardButton];
+            STUCard *card = [self.game cardAtIndex:cardButtonIndex];
+            [cardButton setTitle:[self titleForCard:card] forState:UIControlStateNormal];
+            [cardButton setBackgroundImage:[self backgroundImageForCard:card]
+                                  forState:UIControlStateNormal];
+            if (card.isMatched) {
+                [matches addObject:card.contents];
+            }
+            cardButton.enabled = !card.isMatched;
+        }
     }
+    if ([matches count] > 0) {
+        [self.matchHistory addObject:[NSString stringWithFormat:@"Matched %@ with %@",
+                                      [matches firstObject], [matches lastObject]]];
+        self.matchAlertLabel.text = [self.matchHistory lastObject];
+    }
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
 }
 
 - (NSString *)titleForCard:(STUCard *)card
