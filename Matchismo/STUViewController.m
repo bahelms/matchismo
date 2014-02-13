@@ -12,7 +12,8 @@
 @interface STUViewController ()
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
-@property (weak, nonatomic) IBOutlet UISwitch *gameModeSwitch;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *gameModeSegment;
+@property (weak, nonatomic) IBOutlet UILabel *matchAlertLabel;
 @property (nonatomic) STUCardMatchingGame *game;
 @end
 
@@ -38,15 +39,17 @@
 - (IBAction)touchCardButton:(UIButton *)sender
 {
     int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
+    
+    self.gameModeSegment.enabled = NO;
     [self.game chooseCardAtIndex:chosenButtonIndex];
-    self.gameModeSwitch.enabled = NO;
+    
     [self updateUI];
 }
 
 - (IBAction)dealAgainButton:(UIButton *)sender
 {
-    self.game = [self createGame];
-    self.gameModeSwitch.enabled = YES;
+    self.game = nil;
+    self.gameModeSegment.enabled = YES;
     [self updateUI];
 }
 

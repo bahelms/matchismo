@@ -21,11 +21,11 @@
 		0B569D0C189FB91B00F22A8A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B569CEE189FB91B00F22A8A /* UIKit.framework */; };
 		0B569D14189FB91B00F22A8A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B569D12189FB91B00F22A8A /* InfoPlist.strings */; };
 		0B569D16189FB91B00F22A8A /* MatchismoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B569D15189FB91B00F22A8A /* MatchismoTests.m */; };
+		0B7AF6CB18AC65100026F14C /* STUCardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7AF6CA18AC65100026F14C /* STUCardMatchingGame.m */; };
 		0B8C528718A3ADB7000F42DF /* STUPlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8C528618A3ADB7000F42DF /* STUPlayingCardDeck.m */; };
 		0BA0633F18A263B70075CFF6 /* STUPlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0633E18A263B70075CFF6 /* STUPlayingCard.m */; };
 		0BAF8CAF18A10B7C0031CA00 /* STUCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAF8CAE18A10B7C0031CA00 /* STUCard.m */; };
 		0BAF8CB418A10E0E0031CA00 /* STUDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAF8CB318A10E0E0031CA00 /* STUDeck.m */; };
-		0BC75DE718A67B3400E9A5C5 /* STUCardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC75DE618A67B3400E9A5C5 /* STUCardMatchingGame.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +58,8 @@
 		0B569D11189FB91B00F22A8A /* MatchismoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MatchismoTests-Info.plist"; sourceTree = "<group>"; };
 		0B569D13189FB91B00F22A8A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B569D15189FB91B00F22A8A /* MatchismoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchismoTests.m; sourceTree = "<group>"; };
+		0B7AF6C918AC65100026F14C /* STUCardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STUCardMatchingGame.h; path = Model/STUCardMatchingGame.h; sourceTree = "<group>"; };
+		0B7AF6CA18AC65100026F14C /* STUCardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STUCardMatchingGame.m; path = Model/STUCardMatchingGame.m; sourceTree = "<group>"; };
 		0B8C528518A3ADB7000F42DF /* STUPlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STUPlayingCardDeck.h; path = Model/STUPlayingCardDeck.h; sourceTree = "<group>"; };
 		0B8C528618A3ADB7000F42DF /* STUPlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STUPlayingCardDeck.m; path = Model/STUPlayingCardDeck.m; sourceTree = "<group>"; };
 		0BA0633D18A263B70075CFF6 /* STUPlayingCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STUPlayingCard.h; path = Model/STUPlayingCard.h; sourceTree = "<group>"; };
@@ -66,8 +68,6 @@
 		0BAF8CAE18A10B7C0031CA00 /* STUCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STUCard.m; path = Model/STUCard.m; sourceTree = "<group>"; };
 		0BAF8CB218A10E0E0031CA00 /* STUDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STUDeck.h; path = Model/STUDeck.h; sourceTree = "<group>"; };
 		0BAF8CB318A10E0E0031CA00 /* STUDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STUDeck.m; path = Model/STUDeck.m; sourceTree = "<group>"; };
-		0BC75DE518A67B3400E9A5C5 /* STUCardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STUCardMatchingGame.h; sourceTree = "<group>"; };
-		0BC75DE618A67B3400E9A5C5 /* STUCardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STUCardMatchingGame.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,11 +171,11 @@
 		0BAF8CB118A10BA10031CA00 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0BC75DE518A67B3400E9A5C5 /* STUCardMatchingGame.h */,
-				0BC75DE618A67B3400E9A5C5 /* STUCardMatchingGame.m */,
 				0BA0633D18A263B70075CFF6 /* STUPlayingCard.h */,
 				0BA0633E18A263B70075CFF6 /* STUPlayingCard.m */,
 				0BAF8CAD18A10B7C0031CA00 /* STUCard.h */,
+				0B7AF6C918AC65100026F14C /* STUCardMatchingGame.h */,
+				0B7AF6CA18AC65100026F14C /* STUCardMatchingGame.m */,
 				0BAF8CAE18A10B7C0031CA00 /* STUCard.m */,
 				0BAF8CB218A10E0E0031CA00 /* STUDeck.h */,
 				0BAF8CB318A10E0E0031CA00 /* STUDeck.m */,
@@ -286,7 +286,7 @@
 				0B569CF7189FB91B00F22A8A /* main.m in Sources */,
 				0B8C528718A3ADB7000F42DF /* STUPlayingCardDeck.m in Sources */,
 				0BAF8CB418A10E0E0031CA00 /* STUDeck.m in Sources */,
-				0BC75DE718A67B3400E9A5C5 /* STUCardMatchingGame.m in Sources */,
+				0B7AF6CB18AC65100026F14C /* STUCardMatchingGame.m in Sources */,
 				0B569CFB189FB91B00F22A8A /* STUAppDelegate.m in Sources */,
 				0BA0633F18A263B70075CFF6 /* STUPlayingCard.m in Sources */,
 				0BAF8CAF18A10B7C0031CA00 /* STUCard.m in Sources */,

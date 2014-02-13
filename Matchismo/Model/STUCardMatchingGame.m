@@ -53,23 +53,27 @@ static const int COST_TO_CHOOSE = 1;
         if (card.isChosen)
             card.chosen = NO;
         else {
-            // Match against other chosen cards
-            for (STUCard *otherCard in self.cards) {
-                if (otherCard.isChosen && !otherCard.isMatched) {
-                    int matchScore = [card match:@[otherCard]];
-                    if (matchScore) {
-                        self.score += matchScore * MATCH_BONUS;
-                        card.matched = YES;
-                        otherCard.matched = YES;
-                    } else {
-                        self.score -= MISMATCH_PENALTY;
-                        otherCard.chosen = NO;
-                    }
-                    break;  // can only choose 2 cards
-                }
-            }
+            [self matchCards:card];
             self.score -= COST_TO_CHOOSE;
             card.chosen = YES;
+        }
+    }
+}
+
+- (void)matchCards:(STUCard *)card
+{
+    for (STUCard *otherCard in self.cards) {
+        if (otherCard.isChosen && !otherCard.isMatched) {
+            int matchScore = [card match:@[otherCard]];
+            if (matchScore) {
+                self.score += matchScore * MATCH_BONUS;
+                card.matched = YES;
+                otherCard.matched = YES;
+            } else {
+                self.score -= MISMATCH_PENALTY;
+                otherCard.chosen = NO;
+            }
+            break;  // can only choose 2 cards
         }
     }
 }
