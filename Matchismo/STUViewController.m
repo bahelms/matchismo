@@ -14,11 +14,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gameModeSegment;
 @property (weak, nonatomic) IBOutlet UILabel *matchAlertLabel;
+@property (weak, nonatomic) IBOutlet UISlider *matchHistroySlider;
 @property (nonatomic) STUCardMatchingGame *game;
 @property (nonatomic) NSMutableArray *matchHistory;
 @end
 
 @implementation STUViewController
+
+//- (void)viewDidLoad{
+//    
+//}
 
 - (STUCardMatchingGame *)game
 {
@@ -46,12 +51,16 @@
 - (IBAction)touchCardButton:(UIButton *)sender
 {
     int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
+    STUCard *card = [self.game cardAtIndex:chosenButtonIndex];
     
     self.gameModeSegment.enabled = NO;
+    self.matchAlertLabel.text = [NSString stringWithFormat:@"%@", card.contents];
     [self.game chooseCardAtIndex:chosenButtonIndex];
     
-    if (self.game.matchMessage)
+    NSString *message = self.game.matchMessage;
+    if (message && !([message rangeOfString:@"Matched"].location == NSNotFound))
         [self.matchHistory addObject:self.game.matchMessage];
+
     [self updateUI];
 }
 
@@ -73,6 +82,8 @@
         cardButton.enabled = !card.isMatched;
     }
     self.matchAlertLabel.text = self.game.matchMessage;
+    self.matchHistroySlider.maximumValue = [self.matchHistory count];
+    self.matchHistroySlider.value = self.matchHistroySlider.maximumValue;
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
 }
 
