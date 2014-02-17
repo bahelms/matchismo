@@ -16,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *matchAlertLabel;
 @property (weak, nonatomic) IBOutlet UISlider *matchHistroySlider;
 @property (nonatomic) STUCardMatchingGame *game;
-@property (nonatomic) NSMutableArray *matchHistory;
 @end
 
 @implementation STUViewController
@@ -29,12 +28,6 @@
 {
     if (!_game) _game = [self createGame];
     return _game;
-}
-
-- (NSMutableArray *)matchHistory
-{
-    if (!_matchHistory) _matchHistory = [NSMutableArray array];
-    return _matchHistory;
 }
 
 - (STUDeck *)createDeck
@@ -57,10 +50,6 @@
     self.matchAlertLabel.text = [NSString stringWithFormat:@"%@", card.contents];
     [self.game chooseCardAtIndex:chosenButtonIndex];
     
-    NSString *message = self.game.matchMessage;
-    if (message && !([message rangeOfString:@"Matched"].location == NSNotFound))
-        [self.matchHistory addObject:self.game.matchMessage];
-
     [self updateUI];
 }
 
@@ -69,6 +58,13 @@
     self.game = nil;
     self.gameModeSegment.enabled = YES;
     [self updateUI];
+}
+
+- (IBAction)changeMatchHistorySlider:(UISlider *)sender {
+    // Could always show match thru this instead of game.matchMessage.
+    // game.matchMessage could be removed and just one card displayed by ViewController
+    // getting it's contents
+    NSLog(@"Slider value: %f", self.matchHistroySlider.value);
 }
 
 - (void)updateUI
@@ -82,9 +78,10 @@
         cardButton.enabled = !card.isMatched;
     }
     self.matchAlertLabel.text = self.game.matchMessage;
-    self.matchHistroySlider.maximumValue = [self.matchHistory count];
-    self.matchHistroySlider.value = self.matchHistroySlider.maximumValue;
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
+    
+    self.matchHistroySlider.maximumValue = [self.game.matchHistory count];
+    self.matchHistroySlider.value = roundf(self.matchHistroySlider.maximumValue);
 }
 
 - (NSString *)titleForCard:(STUCard *)card

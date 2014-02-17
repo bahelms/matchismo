@@ -8,9 +8,12 @@
 #import "STUCardMatchingGame.h"
 
 @interface STUCardMatchingGame ()
+
 @property (nonatomic, readwrite) NSInteger score;
-@property (nonatomic) NSMutableArray *cards;
 @property (nonatomic, readwrite) NSString *matchMessage;
+@property (nonatomic, readwrite) NSMutableArray *matchHistory;
+@property (nonatomic) NSMutableArray *cards;
+
 @end
 
 @implementation STUCardMatchingGame
@@ -19,12 +22,7 @@ static const int MISMATCH_PENALTY = 2;
 static const int MATCH_BONUS = 4;
 static const int COST_TO_CHOOSE = 1;
 
-- (NSMutableArray *)cards
-{
-    if (!_cards) _cards = [[NSMutableArray alloc] init];
-    return _cards;
-}
-
+// Designated init
 - (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(STUDeck *)deck
 {
     if (self = [super init]) {
@@ -41,6 +39,18 @@ static const int COST_TO_CHOOSE = 1;
     return self;
 }
 
+- (NSMutableArray *)matchHistory
+{
+    if (!_matchHistory) _matchHistory = [NSMutableArray array];
+    return _matchHistory;
+}
+
+- (NSMutableArray *)cards
+{
+    if (!_cards) _cards = [[NSMutableArray alloc] init];
+    return _cards;
+}
+
 - (STUCard *)cardAtIndex:(NSUInteger)index
 {
     return (index < [self.cards count]) ? self.cards[index] : nil;
@@ -53,6 +63,7 @@ static const int COST_TO_CHOOSE = 1;
     if (!card.isMatched) {
         if (card.isChosen) {
             card.chosen = NO;
+            self.matchMessage = nil;
         }
         else {
             self.matchMessage = [NSString stringWithFormat:@"%@", card.contents];
@@ -80,8 +91,10 @@ static const int COST_TO_CHOOSE = 1;
             } else {
                 self.score -= MISMATCH_PENALTY;
                 otherCard.chosen = NO;
-                self.matchMessage = @"No match!";
+                self.matchMessage = [NSString stringWithFormat:@"%@ and %@ don't match",
+                                     card.contents, otherCard.contents];
             }
+            [self.matchHistory addObject:self.matchMessage];
             break;  // can only choose 2 cards
         }
     }

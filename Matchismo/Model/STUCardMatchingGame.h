@@ -13,6 +13,7 @@
 
 @property (nonatomic, readonly) NSInteger score;
 @property (nonatomic, readonly) NSString *matchMessage;
+@property (nonatomic, readonly) NSMutableArray *matchHistory;
 
 // Designated init
 - (instancetype)initWithCardCount:(NSUInteger)count
