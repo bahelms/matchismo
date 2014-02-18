@@ -61,10 +61,17 @@
 }
 
 - (IBAction)changeMatchHistorySlider:(UISlider *)sender {
-    // Could always show match thru this instead of game.matchMessage.
-    // game.matchMessage could be removed and just one card displayed by ViewController
-    // getting it's contents
-    NSLog(@"Slider value: %f", self.matchHistroySlider.value);
+    NSUInteger index = (int)sender.value;
+    
+    if ([self.game.matchHistory count] > 0) {
+        if (index <= [self.game.matchHistory count] - 1) {
+            self.matchAlertLabel.text = self.game.matchHistory[index];
+            if (sender.value+1 < sender.maximumValue)
+                self.matchAlertLabel.alpha = 0.5;
+            else
+                self.matchAlertLabel.alpha = 1;
+        }
+    }
 }
 
 - (void)updateUI
@@ -81,7 +88,7 @@
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
     
     self.matchHistroySlider.maximumValue = [self.game.matchHistory count];
-    self.matchHistroySlider.value = roundf(self.matchHistroySlider.maximumValue);
+    [self.matchHistroySlider setValue:self.matchHistroySlider.maximumValue animated:YES];
 }
 
 - (NSString *)titleForCard:(STUCard *)card
