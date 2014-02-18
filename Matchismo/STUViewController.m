@@ -20,10 +20,6 @@
 
 @implementation STUViewController
 
-//- (void)viewDidLoad{
-//    
-//}
-
 - (STUCardMatchingGame *)game
 {
     if (!_game) _game = [self createGame];
