@@ -42,7 +42,6 @@
     int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
     STUCard *card = [self.game cardAtIndex:chosenButtonIndex];
     
-    self.gameModeSegment.enabled = NO;
     self.matchAlertLabel.text = [NSString stringWithFormat:@"%@", card.contents];
     [self.game chooseCardAtIndex:chosenButtonIndex];
     
@@ -52,7 +51,6 @@
 - (IBAction)dealAgainButton:(UIButton *)sender
 {
     self.game = nil;
-    self.gameModeSegment.enabled = YES;
     [self updateUI];
 }
 
