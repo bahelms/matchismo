@@ -9,11 +9,11 @@
 
 @implementation STUCard
 
-- (int)match:(NSArray *)otherCards
+- (int)match:(id)otherCard
 {
     int score = 0;
-    
-    for (STUCard *card in otherCards)
+   
+    for (STUCard *card in otherCard)
         if ([card.contents isEqualToString:self.contents])
             score = 1;
     return score;

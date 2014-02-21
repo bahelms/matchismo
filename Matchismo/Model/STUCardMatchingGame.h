@@ -14,6 +14,7 @@
 @property (nonatomic, readonly) NSInteger score;
 @property (nonatomic, readonly) NSString *matchMessage;
 @property (nonatomic, readonly) NSMutableArray *matchHistory;
+@property (nonatomic) NSInteger gameMode;  // number of matches to attempt
 
 // Designated init
 - (instancetype)initWithCardCount:(NSUInteger)count

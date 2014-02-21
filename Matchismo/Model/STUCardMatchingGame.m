@@ -51,6 +51,12 @@ static const int COST_TO_CHOOSE = 1;
     return _cards;
 }
 
+- (NSInteger)gameMode
+{
+    if (!_gameMode) _gameMode = 1;
+    return _gameMode;
+}
+
 - (STUCard *)cardAtIndex:(NSUInteger)index
 {
     return (index < [self.cards count]) ? self.cards[index] : nil;
@@ -78,24 +84,28 @@ static const int COST_TO_CHOOSE = 1;
 {
     NSMutableArray *chosenCards = [[NSMutableArray alloc] init];
     
-    for (STUCard *otherCard in self.cards) {
-        if (otherCard.isChosen && !otherCard.isMatched) {
-            [chosenCards addObject:otherCard];
-            int matchScore = [card match:chosenCards];
-            if (matchScore) {
-                self.score += matchScore * MATCH_BONUS;
-                card.matched = YES;
-                otherCard.matched = YES;
-                self.matchMessage = [NSString stringWithFormat:@"Matched %@ with %@!",
-                                     card.contents, otherCard.contents];
-            } else {
-                self.score -= MISMATCH_PENALTY;
-                otherCard.chosen = NO;
-                self.matchMessage = [NSString stringWithFormat:@"%@ and %@ don't match",
-                                     card.contents, otherCard.contents];
-            }
-            [self.matchHistory addObject:self.matchMessage];
-            break;  // can only choose 2 cards
+    // Find all other chosen cards to match, based game mode number
+    for (STUCard *otherCard in self.cards)
+        if (otherCard.isChosen && !otherCard.isMatched)
+            if ([chosenCards count] < self.gameMode) [chosenCards addObject:otherCard];
+    
+    // Match each card with self and record results
+    for (STUCard *otherCard in chosenCards) {
+        int matchScore = [card match:otherCard];
+        if (matchScore) {
+            self.score += matchScore * MATCH_BONUS;
+            card.matched = YES;
+            otherCard.matched = YES;
+            [self.matchHistory addObject:
+                [NSString stringWithFormat:@"Matched %@ with %@!",
+                    card.contents, otherCard.contents]];
+              
+        } else {
+            self.score -= MISMATCH_PENALTY - COST_TO_CHOOSE;
+            otherCard.chosen = NO;
+            [self.matchHistory addObject:
+                [NSString stringWithFormat:@"%@ and %@ don't match",
+                    card.contents, otherCard.contents]];
         }
     }
 }
