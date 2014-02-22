@@ -51,11 +51,11 @@ static const int COST_TO_CHOOSE = 1;
     return _cards;
 }
 
-- (NSInteger)gameMode
-{
-    if (!_gameMode) _gameMode = 1;
-    return _gameMode;
-}
+//- (NSInteger)gameMode
+//{
+//    if (!_gameMode) _gameMode = 1;
+//    return _gameMode;
+//}
 
 - (STUCard *)cardAtIndex:(NSUInteger)index
 {
@@ -73,40 +73,59 @@ static const int COST_TO_CHOOSE = 1;
         }
         else {
             self.matchMessage = [NSString stringWithFormat:@"%@", card.contents];
-            [self matchCards:card];
+            NSMutableArray *chosenCards = [self findChosenCards];
+            if (!([chosenCards count] < self.gameMode))
+                [self match:card withCards:chosenCards];
             self.score -= COST_TO_CHOOSE;
             card.chosen = YES;
         }
     }
 }
 
-- (void)matchCards:(STUCard *)card
+- (NSMutableArray *)findChosenCards
 {
     NSMutableArray *chosenCards = [[NSMutableArray alloc] init];
     
-    // Find all other chosen cards to match, based game mode number
     for (STUCard *otherCard in self.cards)
         if (otherCard.isChosen && !otherCard.isMatched)
             if ([chosenCards count] < self.gameMode) [chosenCards addObject:otherCard];
-    
+    return chosenCards;
+}
+
+- (void)match:(STUCard *)card withCards:(NSMutableArray *)chosenCards
+{
     // Match each card with self and record results
     for (STUCard *otherCard in chosenCards) {
         int matchScore = [card match:otherCard];
+        NSString *message = nil;
+        
         if (matchScore) {
             self.score += matchScore * MATCH_BONUS;
             card.matched = YES;
             otherCard.matched = YES;
-            [self.matchHistory addObject:
-                [NSString stringWithFormat:@"Matched %@ with %@!",
-                    card.contents, otherCard.contents]];
-              
+            message = @"Matched %@ with %@!";
         } else {
             self.score -= MISMATCH_PENALTY - COST_TO_CHOOSE;
             otherCard.chosen = NO;
-            [self.matchHistory addObject:
-                [NSString stringWithFormat:@"%@ and %@ don't match",
-                    card.contents, otherCard.contents]];
+            message = @"%@ and %@ don't match";
         }
+        
+        // Disable all cards even if only some of them matched
+        if (self.gameMode > 1 && card.isMatched) {
+            otherCard.matched = YES;
+            otherCard.chosen = YES;
+        }
+        
+        self.matchMessage = [NSString stringWithFormat:message,
+                             card.contents, otherCard.contents];
+        [self.matchHistory addObject:self.matchMessage];
+    }
+    
+    // Match other cards to themselves, if any
+    if ([chosenCards count] > 1) {
+        STUCard *nextCard = [chosenCards lastObject];
+        [chosenCards removeLastObject];
+        [self match:nextCard withCards:chosenCards];
     }
 }
 

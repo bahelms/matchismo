@@ -39,10 +39,12 @@
 
 - (IBAction)touchCardButton:(UIButton *)sender
 {
+    self.gameModeSegment.enabled = NO;
     int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
     STUCard *card = [self.game cardAtIndex:chosenButtonIndex];
     
     self.matchAlertLabel.text = [NSString stringWithFormat:@"%@", card.contents];
+    self.game.gameMode = self.gameModeSegment.selectedSegmentIndex + 1;
     [self.game chooseCardAtIndex:chosenButtonIndex];
     
     [self updateUI];
@@ -51,6 +53,8 @@
 - (IBAction)dealAgainButton:(UIButton *)sender
 {
     self.game = nil;
+    self.gameModeSegment.enabled = YES;
+    self.matchAlertLabel.alpha = 1;
     [self updateUI];
 }
 
