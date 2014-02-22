@@ -51,12 +51,6 @@ static const int COST_TO_CHOOSE = 1;
     return _cards;
 }
 
-//- (NSInteger)gameMode
-//{
-//    if (!_gameMode) _gameMode = 1;
-//    return _gameMode;
-//}
-
 - (STUCard *)cardAtIndex:(NSUInteger)index
 {
     return (index < [self.cards count]) ? self.cards[index] : nil;
