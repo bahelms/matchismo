@@ -24,6 +24,7 @@
 		0B7AF6CB18AC65100026F14C /* STUCardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7AF6CA18AC65100026F14C /* STUCardMatchingGame.m */; };
 		0B8C528718A3ADB7000F42DF /* STUPlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8C528618A3ADB7000F42DF /* STUPlayingCardDeck.m */; };
 		0BA0633F18A263B70075CFF6 /* STUPlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0633E18A263B70075CFF6 /* STUPlayingCard.m */; };
+		0BAE7AD118BCB66300486708 /* STUPlayingCardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAE7AD018BCB66300486708 /* STUPlayingCardGameViewController.m */; };
 		0BAF8CAF18A10B7C0031CA00 /* STUCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAF8CAE18A10B7C0031CA00 /* STUCard.m */; };
 		0BAF8CB418A10E0E0031CA00 /* STUDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAF8CB318A10E0E0031CA00 /* STUDeck.m */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,8 @@
 		0B8C528618A3ADB7000F42DF /* STUPlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STUPlayingCardDeck.m; path = Model/STUPlayingCardDeck.m; sourceTree = "<group>"; };
 		0BA0633D18A263B70075CFF6 /* STUPlayingCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STUPlayingCard.h; path = Model/STUPlayingCard.h; sourceTree = "<group>"; };
 		0BA0633E18A263B70075CFF6 /* STUPlayingCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STUPlayingCard.m; path = Model/STUPlayingCard.m; sourceTree = "<group>"; };
+		0BAE7ACF18BCB66300486708 /* STUPlayingCardGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STUPlayingCardGameViewController.h; path = ../STUPlayingCardGameViewController.h; sourceTree = "<group>"; };
+		0BAE7AD018BCB66300486708 /* STUPlayingCardGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STUPlayingCardGameViewController.m; path = ../STUPlayingCardGameViewController.m; sourceTree = "<group>"; };
 		0BAF8CAD18A10B7C0031CA00 /* STUCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STUCard.h; path = Model/STUCard.h; sourceTree = "<group>"; };
 		0BAF8CAE18A10B7C0031CA00 /* STUCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STUCard.m; path = Model/STUCard.m; sourceTree = "<group>"; };
 		0BAF8CB218A10E0E0031CA00 /* STUDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STUDeck.h; path = Model/STUDeck.h; sourceTree = "<group>"; };
@@ -131,6 +134,8 @@
 				0BAF8CB118A10BA10031CA00 /* Model */,
 				0B569CFF189FB91B00F22A8A /* STUViewController.h */,
 				0B569D00189FB91B00F22A8A /* STUViewController.m */,
+				0BAE7ACF18BCB66300486708 /* STUPlayingCardGameViewController.h */,
+				0BAE7AD018BCB66300486708 /* STUPlayingCardGameViewController.m */,
 				0B569D02189FB91B00F22A8A /* Images.xcassets */,
 				0B569CF1189FB91B00F22A8A /* Supporting Files */,
 			);
@@ -290,6 +295,7 @@
 				0B569CFB189FB91B00F22A8A /* STUAppDelegate.m in Sources */,
 				0BA0633F18A263B70075CFF6 /* STUPlayingCard.m in Sources */,
 				0BAF8CAF18A10B7C0031CA00 /* STUCard.m in Sources */,
+				0BAE7AD118BCB66300486708 /* STUPlayingCardGameViewController.m in Sources */,
 				0B569D01189FB91B00F22A8A /* STUViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

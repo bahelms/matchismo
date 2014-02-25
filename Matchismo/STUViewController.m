@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Stanford iTunes U. All rights reserved.
 //
 #import "STUViewController.h"
-#import "STUPlayingCardDeck.h"
 #import "STUCardMatchingGame.h"
 
 @interface STUViewController ()
@@ -28,7 +27,7 @@
 
 - (STUDeck *)createDeck
 {
-    return [[STUPlayingCardDeck alloc] init];
+    return nil;
 }
 
 - (STUCardMatchingGame *)createGame
