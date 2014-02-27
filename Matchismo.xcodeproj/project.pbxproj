@@ -21,6 +21,9 @@
 		0B569D0C189FB91B00F22A8A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B569CEE189FB91B00F22A8A /* UIKit.framework */; };
 		0B569D14189FB91B00F22A8A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B569D12189FB91B00F22A8A /* InfoPlist.strings */; };
 		0B569D16189FB91B00F22A8A /* MatchismoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B569D15189FB91B00F22A8A /* MatchismoTests.m */; };
+		0B761F8D18BF639B00938496 /* STUSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B761F8C18BF639B00938496 /* STUSetViewController.m */; };
+		0B761F9018BF63DA00938496 /* STUSetDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B761F8F18BF63DA00938496 /* STUSetDeck.m */; };
+		0B761F9318BF640F00938496 /* STUSetCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B761F9218BF640F00938496 /* STUSetCard.m */; };
 		0B7AF6CB18AC65100026F14C /* STUCardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B7AF6CA18AC65100026F14C /* STUCardMatchingGame.m */; };
 		0B8C528718A3ADB7000F42DF /* STUPlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8C528618A3ADB7000F42DF /* STUPlayingCardDeck.m */; };
 		0BA0633F18A263B70075CFF6 /* STUPlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0633E18A263B70075CFF6 /* STUPlayingCard.m */; };
@@ -59,6 +62,12 @@
 		0B569D11189FB91B00F22A8A /* MatchismoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MatchismoTests-Info.plist"; sourceTree = "<group>"; };
 		0B569D13189FB91B00F22A8A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B569D15189FB91B00F22A8A /* MatchismoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchismoTests.m; sourceTree = "<group>"; };
+		0B761F8B18BF639B00938496 /* STUSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STUSetViewController.h; sourceTree = "<group>"; };
+		0B761F8C18BF639B00938496 /* STUSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STUSetViewController.m; sourceTree = "<group>"; };
+		0B761F8E18BF63DA00938496 /* STUSetDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STUSetDeck.h; path = Model/STUSetDeck.h; sourceTree = "<group>"; };
+		0B761F8F18BF63DA00938496 /* STUSetDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STUSetDeck.m; path = Model/STUSetDeck.m; sourceTree = "<group>"; };
+		0B761F9118BF640F00938496 /* STUSetCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STUSetCard.h; path = Model/STUSetCard.h; sourceTree = "<group>"; };
+		0B761F9218BF640F00938496 /* STUSetCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STUSetCard.m; path = Model/STUSetCard.m; sourceTree = "<group>"; };
 		0B7AF6C918AC65100026F14C /* STUCardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STUCardMatchingGame.h; path = Model/STUCardMatchingGame.h; sourceTree = "<group>"; };
 		0B7AF6CA18AC65100026F14C /* STUCardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STUCardMatchingGame.m; path = Model/STUCardMatchingGame.m; sourceTree = "<group>"; };
 		0B8C528518A3ADB7000F42DF /* STUPlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STUPlayingCardDeck.h; path = Model/STUPlayingCardDeck.h; sourceTree = "<group>"; };
@@ -134,6 +143,8 @@
 				0BAF8CB118A10BA10031CA00 /* Model */,
 				0B569CFF189FB91B00F22A8A /* STUViewController.h */,
 				0B569D00189FB91B00F22A8A /* STUViewController.m */,
+				0B761F8B18BF639B00938496 /* STUSetViewController.h */,
+				0B761F8C18BF639B00938496 /* STUSetViewController.m */,
 				0BAE7ACF18BCB66300486708 /* STUPlayingCardGameViewController.h */,
 				0BAE7AD018BCB66300486708 /* STUPlayingCardGameViewController.m */,
 				0B569D02189FB91B00F22A8A /* Images.xcassets */,
@@ -176,6 +187,8 @@
 		0BAF8CB118A10BA10031CA00 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0B761F8E18BF63DA00938496 /* STUSetDeck.h */,
+				0B761F8F18BF63DA00938496 /* STUSetDeck.m */,
 				0BA0633D18A263B70075CFF6 /* STUPlayingCard.h */,
 				0BA0633E18A263B70075CFF6 /* STUPlayingCard.m */,
 				0BAF8CAD18A10B7C0031CA00 /* STUCard.h */,
@@ -186,6 +199,8 @@
 				0BAF8CB318A10E0E0031CA00 /* STUDeck.m */,
 				0B8C528518A3ADB7000F42DF /* STUPlayingCardDeck.h */,
 				0B8C528618A3ADB7000F42DF /* STUPlayingCardDeck.m */,
+				0B761F9118BF640F00938496 /* STUSetCard.h */,
+				0B761F9218BF640F00938496 /* STUSetCard.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -290,8 +305,11 @@
 			files = (
 				0B569CF7189FB91B00F22A8A /* main.m in Sources */,
 				0B8C528718A3ADB7000F42DF /* STUPlayingCardDeck.m in Sources */,
+				0B761F8D18BF639B00938496 /* STUSetViewController.m in Sources */,
 				0BAF8CB418A10E0E0031CA00 /* STUDeck.m in Sources */,
 				0B7AF6CB18AC65100026F14C /* STUCardMatchingGame.m in Sources */,
+				0B761F9318BF640F00938496 /* STUSetCard.m in Sources */,
+				0B761F9018BF63DA00938496 /* STUSetDeck.m in Sources */,
 				0B569CFB189FB91B00F22A8A /* STUAppDelegate.m in Sources */,
 				0BA0633F18A263B70075CFF6 /* STUPlayingCard.m in Sources */,
 				0BAF8CAF18A10B7C0031CA00 /* STUCard.m in Sources */,

@@ -9,70 +9,43 @@
 #import "STUCardMatchingGame.h"
 
 @interface STUViewController ()
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *gameModeSegment;
 @property (weak, nonatomic) IBOutlet UILabel *matchAlertLabel;
-@property (weak, nonatomic) IBOutlet UISlider *matchHistroySlider;
 @property (nonatomic) STUCardMatchingGame *game;
 @end
 
+
 @implementation STUViewController
 
-- (STUCardMatchingGame *)game
-{
+- (STUDeck *)createDeck { return nil; }
+- (STUCardMatchingGame *)createGame { return nil; }
+
+
+- (STUCardMatchingGame *)game {
     if (!_game) _game = [self createGame];
     return _game;
 }
 
-- (STUDeck *)createDeck
-{
-    return nil;
-}
 
-- (STUCardMatchingGame *)createGame
-{
-     return [[STUCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
-                                                 usingDeck:[self createDeck]];
-}
-
-- (IBAction)touchCardButton:(UIButton *)sender
-{
-    self.gameModeSegment.enabled = NO;
+- (IBAction)touchCardButton:(UIButton *)sender {
     int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
     STUCard *card = [self.game cardAtIndex:chosenButtonIndex];
     
     self.matchAlertLabel.text = [NSString stringWithFormat:@"%@", card.contents];
-    self.game.gameMode = self.gameModeSegment.selectedSegmentIndex + 1;
     [self.game chooseCardAtIndex:chosenButtonIndex];
     
     [self updateUI];
 }
 
-- (IBAction)dealAgainButton:(UIButton *)sender
-{
+
+- (IBAction)dealAgainButton:(UIButton *)sender {
     self.game = nil;
-    self.gameModeSegment.enabled = YES;
     self.matchAlertLabel.alpha = 1;
     [self updateUI];
 }
 
-- (IBAction)changeMatchHistorySlider:(UISlider *)sender {
-    NSUInteger index = (int)sender.value;
-    
-    if ([self.game.matchHistory count] > 0) {
-        if (index <= [self.game.matchHistory count] - 1) {
-            self.matchAlertLabel.text = self.game.matchHistory[index];
-            if (sender.value+1 < sender.maximumValue)
-                self.matchAlertLabel.alpha = 0.5;
-            else
-                self.matchAlertLabel.alpha = 1;
-        }
-    }
-}
 
-- (void)updateUI
-{
+- (void)updateUI {
     for (UIButton *cardButton in self.cardButtons) {
         int cardButtonIndex = [self.cardButtons indexOfObject:cardButton];
         STUCard *card = [self.game cardAtIndex:cardButtonIndex];
@@ -83,19 +56,29 @@
     }
     self.matchAlertLabel.text = self.game.matchMessage;
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
-    
-    self.matchHistroySlider.maximumValue = [self.game.matchHistory count];
-    [self.matchHistroySlider setValue:self.matchHistroySlider.maximumValue animated:YES];
 }
 
-- (NSString *)titleForCard:(STUCard *)card
-{
+
+- (NSString *)titleForCard:(STUCard *)card {
     return card.isChosen ? card.contents : @"";
 }
 
-- (UIImage *)backgroundImageForCard:(STUCard *)card
-{
+
+- (UIImage *)backgroundImageForCard:(STUCard *)card {
     return [UIImage imageNamed:card.isChosen ? @"cardfront" : @"cardback"];
 }
 
+//- (IBAction)changeMatchHistorySlider:(UISlider *)sender {
+//    NSUInteger index = (int)sender.value;
+//    
+//    if ([self.game.matchHistory count] > 0) {
+//        if (index <= [self.game.matchHistory count] - 1) {
+//            self.matchAlertLabel.text = self.game.matchHistory[index];
+//            if (sender.value+1 < sender.maximumValue)
+//                self.matchAlertLabel.alpha = 0.5;
+//            else
+//                self.matchAlertLabel.alpha = 1;
+//        }
+//    }
+//}
 @end

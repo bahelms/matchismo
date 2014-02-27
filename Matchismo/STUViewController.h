@@ -7,9 +7,13 @@
 //
 #import <UIKit/UIKit.h>
 #import "STUDeck.h"
+#import "STUCardMatchingGame.h"
 
 @interface STUViewController : UIViewController
 
-- (STUDeck *)createDeck;  // abstract
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+
+- (STUDeck *)createDeck;              // abstract
+- (STUCardMatchingGame *)createGame;  // abstract
 
 @end

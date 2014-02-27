@@ -18,7 +18,8 @@
 
 // Designated init
 - (instancetype)initWithCardCount:(NSUInteger)count
-                        usingDeck:(STUDeck *)deck;
+                        usingDeck:(STUDeck *)deck
+                      matchNumber:(int)matchNum;
 - (void)chooseCardAtIndex:(NSUInteger)index;
 - (STUCard *)cardAtIndex:(NSUInteger)index;
 

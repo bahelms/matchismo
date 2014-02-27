@@ -10,9 +10,14 @@
 
 @implementation STUPlayingCardGameViewController
 
-- (STUDeck *)createDeck
-{
+- (STUDeck *)createDeck {
     return [[STUPlayingCardDeck alloc] init];
 }
 
+
+- (STUCardMatchingGame *)createGame {
+    return [[STUCardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+                                                usingDeck:[self createDeck]
+                                              matchNumber:1];
+}
 @end

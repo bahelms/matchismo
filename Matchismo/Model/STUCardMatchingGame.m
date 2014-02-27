@@ -8,13 +8,12 @@
 #import "STUCardMatchingGame.h"
 
 @interface STUCardMatchingGame ()
-
 @property (nonatomic, readwrite) NSInteger score;
 @property (nonatomic, readwrite) NSString *matchMessage;
 @property (nonatomic, readwrite) NSMutableArray *matchHistory;
 @property (nonatomic) NSMutableArray *cards;
-
 @end
+
 
 @implementation STUCardMatchingGame
 
@@ -23,7 +22,9 @@ static const int MATCH_BONUS = 4;
 static const int COST_TO_CHOOSE = 1;
 
 // Designated init
-- (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(STUDeck *)deck
+- (instancetype)initWithCardCount:(NSUInteger)count
+                        usingDeck:(STUDeck *)deck
+                      matchNumber:(int)matchNum
 {
     if (self = [super init]) {
         for (int i=0; i < count; i++) {
@@ -35,29 +36,30 @@ static const int COST_TO_CHOOSE = 1;
                 break;
             }
         }
+        self.gameMode = matchNum;
     }
     return self;
 }
 
-- (NSMutableArray *)matchHistory
-{
+
+- (NSMutableArray *)matchHistory {
     if (!_matchHistory) _matchHistory = [NSMutableArray array];
     return _matchHistory;
 }
 
-- (NSMutableArray *)cards
-{
+
+- (NSMutableArray *)cards {
     if (!_cards) _cards = [[NSMutableArray alloc] init];
     return _cards;
 }
 
-- (STUCard *)cardAtIndex:(NSUInteger)index
-{
+
+- (STUCard *)cardAtIndex:(NSUInteger)index {
     return (index < [self.cards count]) ? self.cards[index] : nil;
 }
 
-- (void)chooseCardAtIndex:(NSUInteger)index
-{
+
+- (void)chooseCardAtIndex:(NSUInteger)index {
     STUCard *card = [self cardAtIndex:index];
     
     if (!card.isMatched) {
@@ -76,8 +78,8 @@ static const int COST_TO_CHOOSE = 1;
     }
 }
 
-- (NSMutableArray *)findChosenCards
-{
+
+- (NSMutableArray *)findChosenCards {
     NSMutableArray *chosenCards = [[NSMutableArray alloc] init];
     
     for (STUCard *otherCard in self.cards)
@@ -86,8 +88,8 @@ static const int COST_TO_CHOOSE = 1;
     return chosenCards;
 }
 
-- (void)match:(STUCard *)card withCards:(NSMutableArray *)chosenCards
-{
+
+- (void)match:(STUCard *)card withCards:(NSMutableArray *)chosenCards {
     // Match each card with self and record results
     for (STUCard *otherCard in chosenCards) {
         int matchScore = [card match:otherCard];
